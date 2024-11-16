@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saxena Home Tutors</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="assets/logo.jpg" alt="Saxena Home Tutors Logo" class="logo">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#teachers">Teachers</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <h1>Saxena Home Tutors</h1>
+            <p>"We provide the best home tutors & online tutors. Highly experienced & certified. Professional tutors for all classes and subjects."</p>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </section>
+
+        <section id="services" class="services">
+            <h2>Our Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Home Tutoring</h3>
+                    <p>Personalized one-on-one tutoring in the comfort of your home.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-laptop"></i>
+                    <h3>Online Classes</h3>
+                    <p>Interactive online sessions with experienced tutors.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Group Study</h3>
+                    <p>Collaborative learning experiences for better understanding.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-book"></i>
+                    <h3>Exam Preparation</h3>
+                    <p>Targeted coaching for various competitive exams.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="teachers" class="teachers">
+            <h2>Our Top Teachers</h2>
+            <div class="teacher-grid">
+                <div class="teacher-card">
+                    <img src="assets/user 1.jpg" alt="John Doe">
+                    <h3>John Doe</h3>
+                    <p>Mathematics</p>
+                    <p>10 years experience</p>
+                </div>
+                <div class="teacher-card">
+                    <img src="assets/user 1.jpg" alt="Jane Smith">
+                    <h3>Jane Smith</h3>
+                    <p>Science</p>
+                    <p>8 years experience</p>
+                </div>
+                <div class="teacher-card">
+                    <img src="assets/user 1.jpg" alt="Mike Johnson">
+                    <h3>Mike Johnson</h3>
+                    <p>English</p>
+                    <p>12 years experience</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="form-container">
+                <h2>Request a Tutor</h2>
+                <form id="tutor-request-form"
+                action="https://formspree.io/f/xrbgknvj"
+                method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject:</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Request</button>
+                </form>
+            </div>
+            
+            <!-- Chat System -->
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h1>Chat Room</h1>
+                </div>
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Type your message...">
+                    <button id="sendButton">Send</button>
+                </div>
+            </div>
+            </div>
+            
+            
+        
+            
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Saxena Home Tutors provides high-quality tutoring services for students of all ages and levels.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: info@saxenahometutors.com</p>
+                <p>Phone: +1 (123) 456-7890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Saxena Home Tutors. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="whatsapp-icon">
+        <a href="https://wa.me/your-whatsapp-number" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="JavaScript/chat.js"></script>
+    <script src="JavaScript/main.js"></script>
+    <script type="module">
+    </script>
+</body>
+</html>
