@@ -11,6 +11,8 @@ body {
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+  overflow: hidden;
+  position: relative;
 }
 
 .auth-container {
@@ -21,6 +23,8 @@ body {
   width: 100%;
   max-width: 400px;
   transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .auth-container:hover {
@@ -31,30 +35,36 @@ h1 {
   text-align: center;
   color: #333;
   margin-bottom: 1.5rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .input-group {
   margin-bottom: 1.5rem;
+  position: relative;
 }
 
 .input-group label {
   display: block;
   margin-bottom: 0.5rem;
   color: #666;
+  font-weight: bold;
 }
 
 .input-group input {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   border-radius: 5px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .input-group input:focus {
   outline: none;
   border-color: #2575fc;
+  box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.1);
 }
 
 button {
@@ -66,12 +76,17 @@ button {
   color: white;
   font-size: 1rem;
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
   margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 button:hover {
   opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(37, 117, 252, 0.2);
 }
 
 .message {
@@ -99,6 +114,12 @@ button:hover {
   margin-top: 1rem;
   color: #2575fc;
   cursor: pointer;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.toggle-form:hover {
+  color: #6a11cb;
 }
 
 @keyframes shake {
@@ -114,4 +135,84 @@ button:hover {
 #userInfo {
   text-align: center;
   margin-top: 1rem;
+}
+
+/* New styles for graphic elements */
+
+.graphic-element {
+  position: absolute;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 86.6px solid #2575fc;
+}
+
+.circle-1 {
+  top: 10%;
+  left: 10%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.circle-2 {
+  bottom: 10%;
+  right: 10%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.triangle-1 {
+  top: 20%;
+  right: 20%;
+  animation: rotate 10s linear infinite;
+}
+
+.triangle-2 {
+  bottom: 20%;
+  left: 20%;
+  animation: rotate 12s linear infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.auth-container::before,
+.auth-container::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  z-index: -1;
+  border-radius: 50%;
+  opacity: 0.1;
+  filter: blur(50px);
+}
+
+.auth-container::before {
+  top: -100px;
+  left: -100px;
+}
+
+.auth-container::after {
+  bottom: -100px;
+  right: -100px;
 }
