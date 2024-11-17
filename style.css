@@ -5,6 +5,7 @@
     --text-color: #333;
     --card-bg-color: #ffffff;
     --transition-speed: 0.3s;
+    --chat-gradient: linear-gradient(135deg, #6e8efb, #a777e3);
 }
 
 * {
@@ -26,18 +27,19 @@ body {
     padding: 0 20px;
 }
 
-/* Header Styles */
+/* Enhanced Header Styles */
 header {
     background-color: var(--primary-color);
     padding: 1rem 0;
     position: fixed;
     width: 100%;
     z-index: 1000;
-    transition: background-color var(--transition-speed);
+    transition: all var(--transition-speed);
 }
 
 header.scrolled {
     background-color: rgba(74, 144, 226, 0.9);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 nav {
@@ -56,7 +58,7 @@ nav {
 }
 
 .logo:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(5deg);
 }
 
 nav ul {
@@ -72,18 +74,31 @@ nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: 600;
-    transition: color var(--transition-speed);
+    transition: all var(--transition-speed);
+    position: relative;
 }
 
-nav ul li a:hover {
-    color: var(--secondary-color);
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: width var(--transition-speed);
 }
 
-/* Hero Section */
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Enhanced Hero Section */
 .hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/pexels-sanaan-3075993.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -95,13 +110,22 @@ nav ul li a:hover {
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 4rem;
     margin-bottom: 1rem;
-    animation: fadeInUp 1s ease-out;
+    animation: fadeInUp 1s ease-out, glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--primary-color), 0 0 20px var(--primary-color);
+    }
+    to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--primary-color), 0 0 40px var(--primary-color);
+    }
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     max-width: 600px;
     margin-bottom: 2rem;
     animation: fadeInUp 1s ease-out 0.5s;
@@ -112,30 +136,53 @@ nav ul li a:hover {
     display: inline-block;
     background-color: var(--secondary-color);
     color: white;
-    padding: 0.8rem 2rem;
+    padding: 1rem 2.5rem;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
-    transition: background-color var(--transition-speed), transform var(--transition-speed);
-    animation: fadeInUp 1s ease-out 1s;
+    transition: all var(--transition-speed);
+    animation: fadeInUp 1s ease-out 1s, pulse 2s infinite;
     animation-fill-mode: both;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .cta-button:hover {
     background-color: #e09400;
     transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(245, 166, 35, 0.4);
 }
 
-/* Services Section */
+/* Enhanced Services Section */
 .services {
     padding: 5rem 0;
 }
 
 .services h2, .teachers h2 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 3rem;
     color: var(--primary-color);
+    position: relative;
+}
+
+.services h2::after, .teachers h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    margin: 10px auto 0;
 }
 
 .service-grid {
@@ -153,25 +200,55 @@ nav ul li a:hover {
     padding: 2rem;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform var(--transition-speed);
+    transition: all var(--transition-speed);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    transition: opacity var(--transition-speed);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+    transform: scale(1.5);
 }
 
 .service-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .service-card i {
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: var(--primary-color);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    transition: all var(--transition-speed);
+}
+
+.service-card:hover i {
+    transform: scale(1.1) rotate(10deg);
 }
 
 .service-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 1rem;
+    transition: all var(--transition-speed);
 }
 
-/* Teachers Section */
+.service-card:hover h3 {
+    color: var(--primary-color);
+}
+
+/* Enhanced Teachers Section */
 .teachers {
     background-color: #f9f9f9;
     padding: 5rem 0;
@@ -191,31 +268,48 @@ nav ul li a:hover {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform var(--transition-speed);
+    transition: all var(--transition-speed);
+    position: relative;
 }
 
 .teacher-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px) rotate(2deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .teacher-card img {
     width: 100%;
-    height: 200px;
+    height: 250px;
     object-fit: cover;
+    transition: all var(--transition-speed);
+}
+
+.teacher-card:hover img {
+    transform: scale(1.1);
+}
+
+.teacher-info {
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: all var(--transition-speed);
+}
+
+.teacher-card:hover .teacher-info {
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .teacher-card h3 {
-    font-size: 1.5rem;
-    margin: 1rem 0 0.5rem;
-    padding: 0 1rem;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
 }
 
 .teacher-card p {
-    padding: 0 1rem 1rem;
     color: #666;
+    font-size: 1rem;
 }
 
-/* Contact Section */
+/* Enhanced Contact Section */
 .contact {
     padding: 5rem 0;
     display: flex;
@@ -230,13 +324,29 @@ nav ul li a:hover {
     background-color: var(--card-bg-color);
     border-radius: 10px;
     padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-speed);
+}
+
+.form-container:hover, .chat-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .form-container h2, .chat-container h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 1.5rem;
     color: var(--primary-color);
+    position: relative;
+}
+
+.form-container h2::after, .chat-container h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    margin-top: 10px;
 }
 
 .form-group {
@@ -247,40 +357,44 @@ nav ul li a:hover {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
+    color: var(--primary-color);
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
     padding: 0.8rem;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
-    transition: border-color var(--transition-speed);
+    transition: all var(--transition-speed);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     border-color: var(--primary-color);
     outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
 .submit-btn {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 0.8rem 2rem;
+    padding: 1rem 2rem;
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color var(--transition-speed);
+    transition: all var(--transition-speed);
 }
 
 .submit-btn:hover {
     background-color: #3a7bc8;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
 }
 
-/* Chat Container Styles */
+/* Enhanced Chat Container Styles */
 .chat-container {
     max-width: 400px;
     margin: 20px auto;
@@ -296,16 +410,34 @@ nav ul li a:hover {
     transform: translateY(-5px);
 }
 
-/* Chat Header Styles */
+/* Enhanced Chat Header Styles */
 .chat-header {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: var(--chat-gradient);
     color: white;
     padding: 20px;
     text-align: center;
-    border-radius:2%;
+    border-radius: 12px 12px 0 0;
     font-size: 1.2em;
     font-weight: bold;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.chat-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+}
+
+.chat-header:hover::before {
+    transform: rotate(45deg) translate(50%, 50%);
 }
 
 .chat-header h1 {
@@ -314,7 +446,7 @@ nav ul li a:hover {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Chat Messages Styles */
+/* Enhanced Chat Messages Styles */
 .chat-messages {
     height: 300px;
     overflow-y: auto;
@@ -341,6 +473,14 @@ nav ul li a:hover {
     line-height: 1.4;
     word-wrap: break-word;
     animation: fadeIn 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.message:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 @keyframes fadeIn {
@@ -362,7 +502,7 @@ nav ul li a:hover {
     border-bottom-left-radius: 4px;
 }
 
-/* Chat Input Styles */
+/* Enhanced Chat Input Styles */
 .chat-input {
     display: flex;
     padding: 15px;
@@ -409,27 +549,7 @@ nav ul li a:hover {
     box-shadow: none;
 }
 
-/* Responsive Design */
-@media (max-width: 480px) {
-    .chat-container {
-        max-width: 100%;
-        margin: 10px;
-        border-radius: 0;
-    }
-
-    .chat-header {
-        padding: 15px;
-    }
-
-    .chat-messages {
-        height: calc(100vh - 160px);
-    }
-
-    .message {
-        max-width: 90%;
-    }
-}
-/* Footer Styles */
+/* Enhanced Footer Styles */
 footer {
     background-color: #333;
     color: white;
@@ -452,19 +572,21 @@ footer {
 }
 
 .footer-section h3 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin-bottom: 1rem;
+    color: var(--secondary-color);
 }
 
 .social-icons a {
     color: white;
     font-size: 1.5rem;
     margin-right: 1rem;
-    transition: color var(--transition-speed);
+    transition: all var(--transition-speed);
 }
 
 .social-icons a:hover {
     color: var(--secondary-color);
+    transform: translateY(-3px);
 }
 
 .footer-bottom {
@@ -474,7 +596,7 @@ footer {
     border-top: 1px solid #555;
 }
 
-/* WhatsApp Icon */
+/* Enhanced WhatsApp Icon */
 .whatsapp-icon {
     position: fixed;
     bottom: 20px;
@@ -489,14 +611,15 @@ footer {
     align-items: center;
     font-size: 2rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    transition: transform var(--transition-speed);
+    transition: all var(--transition-speed);
 }
 
 .whatsapp-icon:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
 }
 
-/* Animations */
+/* Enhanced Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -506,6 +629,22 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@keyframes floatAnimation {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.float-animation {
+    animation: floatAnimation 3s ease-in-out infinite;
 }
 
 /* Responsive Design */
@@ -524,5 +663,44 @@ footer {
 
     .hero p {
         font-size: 1rem;
+    }
+
+    .service-grid, .teacher-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-container {
+        max-width: 100%;
+        margin: 10px;
+        border-radius: 0;
+    }
+
+    .chat-header {
+        padding: 15px;
+    }
+
+    .chat-messages {
+        height: calc(100vh - 160px);
+    }
+
+    .message {
+        max-width: 90%;
+    }
+
+    #messageInput {
+        margin-right: 0;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    #sendButton {
+        font-size: 14px;
+        padding: 8px 16px;
     }
 }
